@@ -13,7 +13,14 @@ class AnalyticCustomTag(models.Model):
 
     code = fields.Char(string='Código', required=True, index=True, help="Identificador único dentro del plan")
     name = fields.Char(string='Nombre', required=True)
-    tag_sequence = fields.Char(string='Secuencia de Etiquetado', help="Sucesión de códigos de otras etiquetas")
+
+    # CAMBIO: Ahora es un Many2many apuntando al modelo de la OCA 'account.analytic.tag'
+    # Usamos _ids por convención en campos relacionales múltiples
+    analytic_tag_ids = fields.Many2many(
+        comodel_name='account.analytic.tag', 
+        string='Secuencia de Etiquetado',
+        help="Etiquetas analíticas oficiales asociadas a este registro"
+    )
 
     _sql_constraints = [
         ('code_plan_uniq', 'unique (code, plan_id)', 'El código debe ser único dentro del mismo Plan Contable.')
@@ -32,7 +39,6 @@ class AnalyticCustomPlan(models.Model):
     name = fields.Char(string='Nombre del Plan / Cliente', required=True, help="Ej: Renault, Porsche")
     description = fields.Text(string='Descripción')
 
-    # Campo relacional clave
     tag_ids = fields.One2many('analytic.custom.tag', 'plan_id', string='Etiquetas Analíticas')
 
     _sql_constraints = [

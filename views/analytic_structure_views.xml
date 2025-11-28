@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- 1. Vista List de las Etiquetas (Definida primero para ser referenciada) -->
+    <!-- 1. Vista List de las Etiquetas (Inline) -->
     <record id="view_analytic_custom_tag_list_inline" model="ir.ui.view">
         <field name="name">analytic.custom.tag.list.inline</field>
         <field name="model">analytic.custom.tag</field>
@@ -9,7 +9,8 @@
             <list editable="bottom" multi_edit="1">
                 <field name="code"/>
                 <field name="name"/>
-                <field name="tag_sequence"/>
+                <!-- Widget visual para M2M -->
+                <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
             </list>
         </field>
     </record>
@@ -30,12 +31,11 @@
                     </group>
                     <notebook>
                         <page string="Etiquetas Analíticas">
-                            <!-- Usamos <list> dentro del campo One2many también -->
                             <field name="tag_ids">
                                 <list editable="bottom">
                                     <field name="code"/>
                                     <field name="name"/>
-                                    <field name="tag_sequence"/>
+                                    <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': False}"/>
                                 </list>
                             </field>
                         </page>
@@ -57,7 +57,7 @@
         </field>
     </record>
 
-    <!-- 4. Vista List General de Etiquetas (con filtro) -->
+    <!-- 4. Vista List General de Etiquetas -->
     <record id="view_analytic_custom_tag_list" model="ir.ui.view">
         <field name="name">analytic.custom.tag.list</field>
         <field name="model">analytic.custom.tag</field>
@@ -66,7 +66,7 @@
                 <field name="plan_id" optional="show"/>
                 <field name="code"/>
                 <field name="name"/>
-                <field name="tag_sequence"/>
+                <field name="analytic_tag_ids" widget="many2many_tags"/>
             </list>
         </field>
     </record>
@@ -79,7 +79,7 @@
             <search string="Buscar Etiquetas">
                 <field name="code"/>
                 <field name="name"/>
-                <field name="tag_sequence"/>
+                <field name="analytic_tag_ids"/>
                 <field name="plan_id"/>
                 <group expand="1" string="Agrupar Por">
                     <filter string="Plan / Cliente" name="group_by_plan" context="{'group_by':'plan_id'}"/>
