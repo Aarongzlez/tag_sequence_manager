@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- LIST VIEW: ITEMS INLINE -->
     <record id="view_tag_sequence_item_list_inline" model="ir.ui.view">
         <field name="name">tag.sequence.item.list.inline</field>
         <field name="model">tag.sequence.item</field>
@@ -9,13 +8,13 @@
             <list editable="bottom" multi_edit="1">
                 <field name="code"/>
                 <field name="name"/>
+                <field name="measure_type"/> <!-- NUEVO CAMPO -->
                 <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
         </field>
     </record>
 
-    <!-- FORM VIEW: COLLECTION (PARENT) -->
     <record id="view_tag_sequence_collection_form" model="ir.ui.view">
         <field name="name">tag.sequence.collection.form</field>
         <field name="model">tag.sequence.collection</field>
@@ -35,6 +34,7 @@
                                 <list editable="bottom">
                                     <field name="code"/>
                                     <field name="name"/>
+                                    <field name="measure_type"/> <!-- NUEVO CAMPO -->
                                     <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': False}"/>
                                     <field name="active" widget="boolean_toggle"/>
                                 </list>
@@ -46,7 +46,6 @@
         </field>
     </record>
 
-    <!-- LIST VIEW: COLLECTION -->
     <record id="view_tag_sequence_collection_list" model="ir.ui.view">
         <field name="name">tag.sequence.collection.list</field>
         <field name="model">tag.sequence.collection</field>
@@ -58,7 +57,6 @@
         </field>
     </record>
 
-    <!-- LIST VIEW: ALL ITEMS -->
     <record id="view_tag_sequence_item_list" model="ir.ui.view">
         <field name="name">tag.sequence.item.list</field>
         <field name="model">tag.sequence.item</field>
@@ -67,13 +65,13 @@
                 <field name="collection_id" optional="show"/>
                 <field name="code"/>
                 <field name="name"/>
+                <field name="measure_type"/> <!-- NUEVO CAMPO -->
                 <field name="analytic_tag_ids" widget="many2many_tags"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
         </field>
     </record>
 
-    <!-- SEARCH VIEW -->
     <record id="view_tag_sequence_item_search" model="ir.ui.view">
         <field name="name">tag.sequence.item.search</field>
         <field name="model">tag.sequence.item</field>
@@ -84,14 +82,15 @@
                 <field name="analytic_tag_ids"/>
                 <field name="collection_id"/>
                 <filter string="Archivado" name="archived" domain="[('active', '=', False)]"/>
+                <filter string="Unidades" name="type_quantity" domain="[('measure_type', '=', 'quantity')]"/>
                 <group expand="1" string="Agrupar Por">
                     <filter string="Colección" name="group_by_collection" context="{'group_by':'collection_id'}"/>
+                    <filter string="Tipo de Medida" name="group_by_measure" context="{'group_by':'measure_type'}"/>
                 </group>
             </search>
         </field>
     </record>
 
-    <!-- ACTIONS -->
     <record id="action_tag_sequence_collection" model="ir.actions.act_window">
         <field name="name">Colección Secuencias</field>
         <field name="res_model">tag.sequence.collection</field>
@@ -105,7 +104,6 @@
         <field name="context">{'search_default_group_by_collection': 1}</field>
     </record>
 
-    <!-- MENUS -->
     <menuitem id="menu_tag_sequence_collection" 
               name="Colección Secuencias"
               parent="account.menu_analytic_accounting" 

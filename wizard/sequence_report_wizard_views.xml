@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tag_sequence_report_wizard_form" model="ir.ui.view">
+        <field name="name">tag.sequence.report.wizard.form</field>
+        <field name="model">tag.sequence.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Generar Informe CSV">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="collection_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                    </group>
+
+                    <group invisible="not csv_file">
+                        <field name="csv_filename" invisible="1"/>
+                        <div class="alert alert-success" role="alert">
+                            ¡Informe generado con éxito! Descárgalo abajo:
+                        </div>
+                        <field name="csv_file" filename="csv_filename"/>
+                    </group>
+
+                </sheet>
+                <footer>
+                    <button name="action_generate_csv" 
+                            string="Generar CSV" 
+                            type="object" 
+                            class="btn-primary" 
+                            invisible="csv_file"/>
+
+                    <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tag_sequence_report_wizard" model="ir.actions.act_window">
+        <field name="name">Generar Informe Secuencias</field>
+        <field name="res_model">tag.sequence.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_tag_sequence_report"
+              name="Informe CSV"
+              parent="account.menu_analytic_accounting"
+              action="action_tag_sequence_report_wizard"
+              sequence="52"/>
+</odoo>

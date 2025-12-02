@@ -1,13 +1,14 @@
 {
     'name': 'Tag Sequence Manager',
-    'version': '18.0.1.0.0',
+    'version': '18.0.1.0.2',
     'category': 'Accounting/Analytic',
-    'summary': 'Gestor de colecciones y secuencias de etiquetas analíticas',
+    'summary': 'Gestor de colecciones, secuencias e informes CSV',
     'author': 'Assistant',
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'analytic'],
     'data': [
         'security/ir.model.access.csv',
         'views/sequence_manager_views.xml',
+        'wizard/sequence_report_wizard_views.xml',
     ],
     'installable': True,
     'application': False,

@@ -1,6 +1,5 @@
-collection_id,code,name,analytic_tag_ids,active
-Renault,001,Gastos Generales,"EtiquetaAdmin,EtiquetaGeneral",1
-Renault,002,Marketing,EtiquetaMarketing,1
-Porsche,001,Ingeniería Motor,"EtiquetaI+D,EtiquetaMotor",1
-Porsche,002,Competición,"EtiquetaCarreras,EtiquetaMotor",0
-Dacia,001,Logística,EtiquetaLogistica,1
+collection_id,code,name,measure_type,analytic_tag_ids,active
+Renault,001,Gastos Generales,balance,"EtiquetaAdmin,EtiquetaGeneral",1
+Renault,002,Ventas Motor,balance,"EtiquetaVenta,EtiquetaMotor",1
+Renault,003,Unidades Motor,quantity,"EtiquetaVenta,EtiquetaMotor",1
+Porsche,001,Ingeniería,balance,"EtiquetaI+D",1

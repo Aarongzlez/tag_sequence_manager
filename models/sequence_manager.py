@@ -16,6 +16,15 @@ class TagSequenceItem(models.Model):
         string='Secuencia de Etiquetado'
     )
 
+    # NUEVO CAMPO: Tipo de medida (Dinero vs Unidades)
+    measure_type = fields.Selection(
+        [('balance', 'Importe Monetario'), ('quantity', 'Unidades (Cantidad)')],
+        string='Tipo de Medida',
+        default='balance',
+        required=True,
+        help="Define si esta secuencia debe sumar el saldo contable o la cantidad de unidades."
+    )
+
     active = fields.Boolean(string='Activo', default=True)
 
     _sql_constraints = [
