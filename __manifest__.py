@@ -1,8 +1,8 @@
 {
     'name': 'Tag Sequence Manager',
-    'version': '18.0.1.0.2',
+    'version': '18.0.1.0.4',
     'category': 'Accounting/Analytic',
-    'summary': 'Gestor de colecciones, secuencias e informes CSV',
+    'summary': 'Gestor de colecciones, secuencias e informes CSV dinámicos',
     'author': 'Assistant',
     'depends': ['base', 'account', 'analytic'],
     'data': [

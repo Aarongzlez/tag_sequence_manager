@@ -8,7 +8,7 @@
             <list editable="bottom" multi_edit="1">
                 <field name="code"/>
                 <field name="name"/>
-                <field name="measure_type"/> <!-- NUEVO CAMPO -->
+                <field name="measure_type"/>
                 <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': True}"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
@@ -34,7 +34,7 @@
                                 <list editable="bottom">
                                     <field name="code"/>
                                     <field name="name"/>
-                                    <field name="measure_type"/> <!-- NUEVO CAMPO -->
+                                    <field name="measure_type"/>
                                     <field name="analytic_tag_ids" widget="many2many_tags" options="{'no_create': False}"/>
                                     <field name="active" widget="boolean_toggle"/>
                                 </list>
@@ -65,7 +65,7 @@
                 <field name="collection_id" optional="show"/>
                 <field name="code"/>
                 <field name="name"/>
-                <field name="measure_type"/> <!-- NUEVO CAMPO -->
+                <field name="measure_type"/>
                 <field name="analytic_tag_ids" widget="many2many_tags"/>
                 <field name="active" widget="boolean_toggle"/>
             </list>
